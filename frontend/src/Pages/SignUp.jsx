@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 const Signup = ()=>{
         const [input,setInput] = useState({
             fullName: '',
@@ -42,7 +42,8 @@ const Signup = ()=>{
                         </div>
                         <input type="password" placeholder="Type here" className="input input-bordered w-full max-w-xs" 
                         value={input.confirmPassword} onChange={(e)=> setInput({...input, confirmPassword: e.target.value})}/>
-                        {/* <Link to='/login' className="link link-primary">Already have an account</Link> */}
+
+                    <Link to='/login' className="link link-primary">Already have an account</Link>
                     <div>
                         <button className="btn btn-block btn-sm mt-2">
                             SignUp
