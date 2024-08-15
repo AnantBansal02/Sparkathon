@@ -2,6 +2,7 @@
 import React from 'react';
 import  './SupplierApplication.css';
 import workimg from '../assets/work.jpg'
+import { Link,Navigate } from 'react-router-dom';
 const SupplierApplication = () => {
   return (
     <div className="min-h-screen bg-white p-6 font-sans text-gray-800">
@@ -51,9 +52,11 @@ const SupplierApplication = () => {
             </a>: Click here to learn what information is needed.
           </li>
           <li>
-            <a href="#" className="text-blue-600 underline">
-              Account Creation
-            </a>: Click here and "Create Account" to begin the qualification process.
+            <a href='/signup'
+            target="_blank" // This opens the link in a new tab
+       rel="noopener noreferrer"
+            className="text-blue-600 underline">
+              Account Creation </a>: Click here and "Create Account" to begin the qualification process.
           </li>
           <li>
             Self-registering your company does not guarantee you will be extended an agreement to do
