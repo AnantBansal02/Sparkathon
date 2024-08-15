@@ -1,6 +1,7 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import SignUpHook from "../Hooks/SignUpHook";
+
 const Signup = ()=>{
         const [input,setInput] = useState({
             fullName: '',
@@ -9,13 +10,21 @@ const Signup = ()=>{
             confirmPassword: ''
         });
 
+        const {loading, signup} = SignUpHook();
+        
+        const handleSubmit = async (e)=>{
+            e.preventDefault();
+            // console.log(input);
+            await signup(input);
+        }
+
     return (
         <div className='flex flex-col items-center justify-center min-w-96 mx-auto'>
             <div className='w-full p-7 bg-gray-500 rounded-md bg-clip-padding backdrop-filter 
         backdrop-blur-lg bg-opacity-20'>
             <h1 className='text-3xl font-semibold text-center text-black'>
                 SignUp </h1>
-                    <form >
+                    <form onSubmit={handleSubmit}>
                         <label className="form-control w-full max-w-xs p-3">
                             <div className="label">
                                 <span className="label-text text-xl text-black">FullName</span>
@@ -45,8 +54,8 @@ const Signup = ()=>{
                     <br/>
                     <Link to='/login' className="link link-primary">Already have an account</Link>
                     <div>
-                        <button className="btn btn-block btn-sm mt-2">
-                            SignUp
+                        <button className="btn btn-block btn-sm mt-2" disabled={loading}>
+                            {loading ? <span className="loading loading-spinner loading-md"></span> : "SignUp"}
                         </button>
                     </div>
                 </form>

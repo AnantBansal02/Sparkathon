@@ -1,11 +1,18 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import LogInHook from "../Hooks/LoginHook";
 
 const Login = () =>{
-    const [input,setInput] = useState({
-        userName: '',
-        password: '',
-    });
+    const [userName,setUserName] = useState("");
+    const [password,setPassword] = useState("");
+
+    const {loading, login} = LogInHook();
+
+    const handleSubmit = async(e) =>{
+        e.preventDefault();
+        await login({userName,password});
+    }
+
     return (
         <div className='flex flex-col items-center justify-center min-w-96 mx-auto'>
             <div className='w-full p-7 bg-gray-500 rounded-md bg-clip-padding backdrop-filter 
@@ -20,19 +27,19 @@ const Login = () =>{
                         </label>
 
                         <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" 
-                        value={input.userName} onChange={(e) => setInput({...input, userName: e.target.value})}/>
+                        value={userName} onChange={(e) => setUserName(e.target.value)}/>
 
                         <div className="label">
                             <span className="label-text text-xl text-black">Password</span>
                         </div>
-                        <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" 
-                        value={input.password} onChange={(e)=> setInput({...input, password: e.target.value})}/>
+                        <input type="password" placeholder="Type here" className="input input-bordered w-full max-w-xs" 
+                        value={password} onChange={(e)=> setPassword(e.target.value)}/>
                     <br/>
                         <Link to='/signUp' className="link link-primary">Create account</Link>
                     <div>
-                        <button className="btn btn-block btn-sm mt-2">
-                            Login
-                        </button>
+                    <button className="btn btn-block btn-sm mt-2" disabled={loading}>
+                        {loading ? <span className="loading loading-spinner loading-md"></span> : "Login"}
+                    </button>
                     </div>
                 </form>
             </div>
