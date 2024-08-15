@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
 const Login = () =>{
     const [input,setInput] = useState({
         userName: '',
@@ -25,8 +27,8 @@ const Login = () =>{
                         </div>
                         <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" 
                         value={input.password} onChange={(e)=> setInput({...input, password: e.target.value})}/>
-
-                        {/* <Link to='/login' className="link link-primary">Create account</Link> */}
+                    <br/>
+                        <Link to='/signUp' className="link link-primary">Create account</Link>
                     <div>
                         <button className="btn btn-block btn-sm mt-2">
                             Login

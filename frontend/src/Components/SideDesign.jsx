@@ -15,7 +15,6 @@ function SideDesign() {
                 margin: 'auto',
             }}/>
         </div>
-        <Signup />
     </>
   )
 }
