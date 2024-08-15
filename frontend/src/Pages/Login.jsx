@@ -29,19 +29,20 @@ const Login = () => {
           <h1 className="text-3xl font-semibold text-center text-black">
             Login{" "}
           </h1>
-          <form>
-            <label className="form-control w-full max-w-xs p-3">
-              <div className="label">
-                <span className="label-text text-xl text-black">UserName</span>
-              </div>
-            </label>
-
+          <form onSubmit={handleSubmit}>
+            <div className="label">
+            <span className="label-text text-xl text-black">UserName</span>
+            </div>
             <input
               type="text"
               placeholder="Type here"
-              className="input input-bordered w-full max-w-xs"
+              className="custom-placeholder input input-bordered w-full max-w-xs"
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
+              style={{
+                backgroundColor: "rgb(255,255,255,0.2)",
+                color: "black",
+              }}
             />
 
             <div className="label">
@@ -50,56 +51,36 @@ const Login = () => {
             <input
               type="password"
               placeholder="Type here"
-              className="input input-bordered w-full max-w-xs"
+              className="custom-placeholder input input-bordered w-full max-w-xs"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              style={{
+                backgroundColor: "rgb(255,255,255,0.2)",
+                color: "black",
+              }}
             />
-            <br />
-            <Link to="/signUp" className="link link-primary">
-              Create account
-            </Link>
+            <div
+              style={{
+                color: "white",
+                margin: "10px",
+                marginTop: "20px",
+                textDecoration: "underline",
+                fontSize: "20px",
+              }}
+            >
+              <Link to="/signUp">Create account </Link>
+            </div>
             <div>
-              <button className="btn btn-block btn-sm mt-2" disabled={loading}>
-                {loading ? (
-                  <span className="loading loading-spinner loading-md"></span>
-                ) : (
-                  "Login"
-                )}
+              <button
+                className="btn btn-block btn-sm mt-2"
+                style={{
+                  height: "40px",
+                }}
+              >
+                Login
               </button>
             </div>
           </form>
-        </div>
-        <input
-          type="text"
-          placeholder="Type here"
-          className="custom-placeholder input input-bordered w-full max-w-xs"
-          value={input.password}
-          onChange={(e) => setInput({ ...input, password: e.target.value })}
-          style={{
-            backgroundColor: "rgb(255,255,255,0.2)",
-            color: "black",
-          }}
-        />
-        <div
-          style={{
-            color: "white",
-            margin: "10px",
-            marginTop: "20px",
-            textDecoration: "underline",
-            fontSize: "20px",
-          }}
-        >
-          <Link to="/signUp">Create account </Link>
-        </div>
-        <div>
-          <button
-            className="btn btn-block btn-sm mt-2"
-            style={{
-              height: "40px",
-            }}
-          >
-            Login
-          </button>
         </div>
       </div>
     </>
