@@ -66,6 +66,8 @@ const signup = async (req,res)=>{
                 fullName: newUser.fullName,
                 userName: newUser.userName
             });
+
+            console.log(newUser);
         } else {
             res.status(400).json("Invalid User data");
         }
@@ -95,6 +97,8 @@ const login = async (req,res)=>{
             fullName: user.fullName,
             userName: user.userName
         });
+        console.log("login success");
+        console.log(user);
     } catch (error) {
         res.status(500).json("Internal Server Error");
     }

@@ -19,13 +19,13 @@ const LogInHook = ()=>{
             //     body: JSON.stringify({userName,password})
             // });
 
-            const res= await axios.post("/api/auth/login",{userName, password},{ withCredentials: true });
+            const res= await axios.post("http://localhost:5000/auth/login",{userName, password},{ withCredentials: true });
             
             // console.log(res); 
             
-            const data = res.data;
+            const data = await res.data;
             
-            localStorage.setItem("chatApp-user",JSON.stringify(data));
+            localStorage.setItem("supplier",JSON.stringify(data));
             setAuthUser(data);
 
         } catch (error) {

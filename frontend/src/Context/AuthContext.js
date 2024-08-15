@@ -7,7 +7,7 @@ export const AuthContext = createContext();
 //context provider
 export const AuthContextProvider = ({ children }) => {
 
-    const [authUser, setAuthUser] = useState(JSON.parse(localStorage.getItem("get-supplier")) || null);
+    const [authUser, setAuthUser] = useState(JSON.parse(localStorage.getItem("supplier")) || null);
     
     return <AuthContext.Provider value={{ authUser, setAuthUser }}>{children}</AuthContext.Provider>;
 

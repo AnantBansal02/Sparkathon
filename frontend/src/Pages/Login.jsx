@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import LogInHook from "../Hooks/LoginHook";
+import SideDesign from "../Components/SideDesign";
 
 const Login = () => {
   const [userName, setUserName] = useState("");
@@ -14,6 +15,7 @@ const Login = () => {
   };
   return (
     <>
+    <SideDesign />
       <style>
         {`
           .custom-placeholder::placeholder {

@@ -1,11 +1,9 @@
-import { useState } from 'react'
-import Signup from './Pages/SignUp'
-import Navbar from './Components/NavBar'
-import Login from './Pages/Login'
+import Signup from './Pages/SignUp';
+import Login from './Pages/Login';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useAuthContext } from './Context/AuthContext';
 import SupplierApplication from './Components/SupplierApplication';
-import SideDesign from "./Components/SideDesign";
+import DashBoard from './Pages/DashBoard';
 
 function App() {
   const { authUser } = useAuthContext();
@@ -13,13 +11,14 @@ function App() {
   path.toLowerCase();
   return (
     <>
-      {path === "/login" || path === "/signup" ? null : <Navbar />}
       <div
         className="flex items-center justify-center"
       >
-        {path === "/login" || path === "/signup" ? <SideDesign /> : null}
         <Routes>
-          <Route path='/' element={<SupplierApplication />} />
+          <Route
+            path='/'
+            element={authUser ? <Navigate to="/dashboard" /> : <SupplierApplication />}
+          />
           <Route
             path="/login"
             element={authUser ? <Navigate to="/" /> : <Login />}
@@ -27,6 +26,10 @@ function App() {
           <Route
             path="/signup"
             element={authUser ? <Navigate to="/" /> : <Signup />}
+          />
+          <Route
+            path="/dashboard"
+            element={authUser ? <DashBoard /> : <Navigate to="/" />}
           />
         </Routes>
       </div>

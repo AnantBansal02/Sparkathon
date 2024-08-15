@@ -13,15 +13,15 @@ const app = express();
 // const dirname = path.resolve();
 
 dotenv.config();
-// app.use(cors({
-//     origin: "http://localhost:3000",
-//     credentials: true
-// }));
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true
+}));
 app.use(express.json());
 app.use(cookieParser());
 
 
-const Port = process.env.PORT;
+const Port = 5000;
 app.use("/auth", authRoutes);
 app.use("/dash", dashRoutes);
 

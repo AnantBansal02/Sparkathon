@@ -20,14 +20,14 @@ const SignUpHook = ()=>{
             //     body: JSON.stringify({fullName, userName, password, confirmPassword, gender})
             // });
 
-            const res = await axios.post("/api/auth/signup",
+            const res = await axios.post("http://localhost:5000/auth/signup",
             {fullName, userName, password, confirmPassword},{ withCredentials:true});
 
             const data = await res.data;
 
             // console.log(data);
 
-            localStorage.setItem("chatApp-user", JSON.stringify(data));
+            localStorage.setItem("supplier", JSON.stringify(data));
             setAuthUser(data);
 
         } catch (error) {

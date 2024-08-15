@@ -2,9 +2,11 @@
 import React from 'react';
 import  './SupplierApplication.css';
 import workimg from '../assets/work.jpg'
-import { Link,Navigate } from 'react-router-dom';
+import NavBar from './NavBar';
 const SupplierApplication = () => {
   return (
+    <div className='w-full'>
+    <NavBar />
     <div className="min-h-screen bg-white p-6 font-sans text-gray-800">
       {/* Header */}
       <header className="text-center mb-8">
@@ -17,9 +19,9 @@ const SupplierApplication = () => {
           src={workimg} 
           alt="Apply to be a Supplier"
           className="rounded-lg"
-           width="600"
-  height="400"
-        />
+          width="600"
+          height="400"
+          />
       </div>
 
       {/* Supplier Information */}
@@ -45,16 +47,16 @@ const SupplierApplication = () => {
             <a 
            href="https://corporate.walmart.com/content/dam/corporate/documents/suppliers/apply-to-be-a-supplier/supplier-checklist.pdf"
            target="_blank" // This opens the link in a new tab
-       rel="noopener noreferrer" // Security best practice
-
-             className="text-blue-600 underline">
+           rel="noopener noreferrer" // Security best practice
+           
+           className="text-blue-600 underline">
               Supplier Checklist
             </a>: Click here to learn what information is needed.
           </li>
           <li>
             <a href='/signup'
             target="_blank" // This opens the link in a new tab
-       rel="noopener noreferrer"
+            rel="noopener noreferrer"
             className="text-blue-600 underline">
               Account Creation </a>: Click here and "Create Account" to begin the qualification process.
           </li>
@@ -80,7 +82,7 @@ const SupplierApplication = () => {
           href="https://marketplace.walmart.com/"
           target="_blank"
           rel="noopener noreferrer"
-        className="text-blue-600 underline ml-2">
+          className="text-blue-600 underline ml-2">
            Walmart Marketplace seller qualification process.
         </a>
       </section>
@@ -95,10 +97,11 @@ const SupplierApplication = () => {
           href="https://leasing.walmart.com/"
           target="_blank"
           rel="noopener noreferrer"
-         className="text-blue-600 underline">
+          className="text-blue-600 underline">
           Learn more about in-store leasing.
         </a>
       </section>
+    </div>
     </div>
   );
 };

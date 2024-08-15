@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import SignUpHook from "../Hooks/SignUpHook";
-
+import SideDesign from "../Components/SideDesign";
 const Signup = () => {
   const [input, setInput] = useState({
     fullName: "",
@@ -20,6 +20,7 @@ const Signup = () => {
 
   return (
     <>
+    <SideDesign />
       <style>
         {`
           .custom-placeholder::placeholder {
