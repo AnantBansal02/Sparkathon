@@ -16,9 +16,6 @@ function App() {
       {path === "/login" || path === "/signup" ? null : <Navbar />}
       <div
         className="flex items-center justify-center"
-        style={{
-         
-        }}
       >
         {path === "/login" || path === "/signup" ? <SideDesign /> : null}
         <Routes>
