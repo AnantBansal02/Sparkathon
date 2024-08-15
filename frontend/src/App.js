@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Signup from "./Pages/SignUp";
 import Navbar from "./Components/NavBar";
 import Login from "./Pages/Login";

@@ -7,8 +7,8 @@ const SignUpHook = ()=>{
     const [loading, setLoading] = useState(false);
     const { setAuthUser } = useAuthContext();
 
-    const signup = async({fullName, userName, password, confirmPassword, gender})=>{
-        const inputSuccess = handleInputs({fullName, userName, password, confirmPassword, gender});
+    const signup = async({fullName, userName, password, confirmPassword})=>{
+        const inputSuccess = handleInputs({fullName, userName, password, confirmPassword});
         if(!inputSuccess) return;
 
         setLoading(true);
@@ -21,7 +21,7 @@ const SignUpHook = ()=>{
             // });
 
             const res = await axios.post("/api/auth/signup",
-            {fullName, userName, password, confirmPassword, gender},{ withCredentials:true});
+            {fullName, userName, password, confirmPassword},{ withCredentials:true});
 
             const data = await res.data;
 
@@ -43,8 +43,8 @@ const SignUpHook = ()=>{
 
 export default  SignUpHook;
 
-function handleInputs ({fullName, userName, password, confirmPassword, gender}){
-    if(!fullName || !userName || !password || !confirmPassword  || !gender){
+function handleInputs ({fullName, userName, password, confirmPassword}){
+    if(!fullName || !userName || !password || !confirmPassword){
         toast.error( "Please fill all fields");
         return false;
     }

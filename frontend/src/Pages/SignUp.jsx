@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import SignUpHook from "../Hooks/SignUpHook";
+
 const Signup = () => {
   const [input, setInput] = useState({
     fullName: "",
@@ -7,6 +9,14 @@ const Signup = () => {
     password: "",
     confirmPassword: "",
   });
+
+  const { loading, signup } = SignUpHook();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // console.log(input);
+    await signup(input);
+  };
 
   return (
     <>
@@ -25,19 +35,17 @@ const Signup = () => {
           <h1 className="text-3xl font-semibold text-center text-black">
             SignUp{" "}
           </h1>
-          <form>
-            <div className="label">
-              <span className="label-text text-xl text-black">FullName</span>
-            </div>
+          <form onSubmit={handleSubmit}>
+            <label className="form-control w-full max-w-xs p-3">
+              <div className="label">
+                <span className="label-text text-xl text-black">FullName</span>
+              </div>
+            </label>
 
             <input
               type="text"
               placeholder="Type here"
-              className="custom-placeholder input input-bordered w-full max-w-xs"
-              style={{
-                backgroundColor: "rgb(255,255,255,0.2)",
-                color: "black",
-              }}
+              className="input input-bordered w-full max-w-xs"
               value={input.fullName}
               onChange={(e) => setInput({ ...input, fullName: e.target.value })}
             />
@@ -48,11 +56,7 @@ const Signup = () => {
             <input
               type="text"
               placeholder="Type here"
-              className="custom-placeholder input input-bordered w-full max-w-xs"
-              style={{
-                backgroundColor: "rgb(255,255,255,0.2)",
-                color: "black",
-              }}
+              className="input input-bordered w-full max-w-xs"
               value={input.userName}
               onChange={(e) => setInput({ ...input, userName: e.target.value })}
             />
@@ -63,11 +67,7 @@ const Signup = () => {
             <input
               type="password"
               placeholder="Type here"
-              className="custom-placeholder input input-bordered w-full max-w-xs"
-              style={{
-                backgroundColor: "rgb(255,255,255,0.2)",
-                color: "black",
-              }}
+              className="input input-bordered w-full max-w-xs"
               value={input.password}
               onChange={(e) => setInput({ ...input, password: e.target.value })}
             />
@@ -80,38 +80,108 @@ const Signup = () => {
             <input
               type="password"
               placeholder="Type here"
-              className="custom-placeholder input input-bordered w-full max-w-xs"
-              style={{
-                backgroundColor: "rgb(255,255,255,0.2)",
-                color: "black",
-              }}
+              className="input input-bordered w-full max-w-xs"
               value={input.confirmPassword}
               onChange={(e) =>
                 setInput({ ...input, confirmPassword: e.target.value })
               }
             />
-            <div
-              style={{
-                color: "white",
-                margin: "10px",
-                marginTop: "20px",
-                textDecoration: "underline",
-                fontSize: "20px",
-              }}
-            >
-              <Link to="/login">Already have an account</Link>
-            </div>
+            <br />
+            <Link to="/login" className="link link-primary">
+              Already have an account
+            </Link>
             <div>
-              <button
-                className="btn btn-block btn-sm mt-2"
-                style={{
-                  height: "40px",
-                }}
-              >
-                SignUp
+              <button className="btn btn-block btn-sm mt-2" disabled={loading}>
+                {loading ? (
+                  <span className="loading loading-spinner loading-md"></span>
+                ) : (
+                  "SignUp"
+                )}
               </button>
             </div>
           </form>
+        </div>
+
+        <input
+          type="text"
+          placeholder="Type here"
+          className="custom-placeholder input input-bordered w-full max-w-xs"
+          style={{
+            backgroundColor: "rgb(255,255,255,0.2)",
+            color: "black",
+          }}
+          value={input.fullName}
+          onChange={(e) => setInput({ ...input, fullName: e.target.value })}
+        />
+
+        <div className="label">
+          <span className="label-text text-xl text-black">UserName</span>
+        </div>
+        <input
+          type="text"
+          placeholder="Type here"
+          className="custom-placeholder input input-bordered w-full max-w-xs"
+          style={{
+            backgroundColor: "rgb(255,255,255,0.2)",
+            color: "black",
+          }}
+          value={input.userName}
+          onChange={(e) => setInput({ ...input, userName: e.target.value })}
+        />
+
+        <div className="label">
+          <span className="label-text text-xl text-black">Password</span>
+        </div>
+        <input
+          type="password"
+          placeholder="Type here"
+          className="custom-placeholder input input-bordered w-full max-w-xs"
+          style={{
+            backgroundColor: "rgb(255,255,255,0.2)",
+            color: "black",
+          }}
+          value={input.password}
+          onChange={(e) => setInput({ ...input, password: e.target.value })}
+        />
+
+        <div className="label">
+          <span className="label-text text-xl text-black">
+            Confirm Password
+          </span>
+        </div>
+        <input
+          type="password"
+          placeholder="Type here"
+          className="custom-placeholder input input-bordered w-full max-w-xs"
+          style={{
+            backgroundColor: "rgb(255,255,255,0.2)",
+            color: "black",
+          }}
+          value={input.confirmPassword}
+          onChange={(e) =>
+            setInput({ ...input, confirmPassword: e.target.value })
+          }
+        />
+        <div
+          style={{
+            color: "white",
+            margin: "10px",
+            marginTop: "20px",
+            textDecoration: "underline",
+            fontSize: "20px",
+          }}
+        >
+          <Link to="/login">Already have an account</Link>
+        </div>
+        <div>
+          <button
+            className="btn btn-block btn-sm mt-2"
+            style={{
+              height: "40px",
+            }}
+          >
+            SignUp
+          </button>
         </div>
       </div>
     </>

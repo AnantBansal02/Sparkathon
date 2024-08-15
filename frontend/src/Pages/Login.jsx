@@ -1,11 +1,17 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import LogInHook from "../Hooks/LoginHook";
 
 const Login = () => {
-  const [input, setInput] = useState({
-    userName: "",
-    password: "",
-  });
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { loading, login } = LogInHook();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await login({ userName, password });
+  };
   return (
     <>
       <style>
@@ -24,50 +30,76 @@ const Login = () => {
             Login{" "}
           </h1>
           <form>
+            <label className="form-control w-full max-w-xs p-3">
               <div className="label">
                 <span className="label-text text-xl text-black">UserName</span>
               </div>
+            </label>
+
             <input
               type="text"
               placeholder="Type here"
-              className="custom-placeholder input input-bordered w-full max-w-xs"
-              value={input.userName}
-              onChange={(e) => setInput({ ...input, userName: e.target.value })}
-              style={{
-                backgroundColor: "rgb(255,255,255,0.2)",
-                color: "black",
-              }}
+              className="input input-bordered w-full max-w-xs"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
             />
 
             <div className="label">
               <span className="label-text text-xl text-black">Password</span>
             </div>
             <input
-              type="text"
+              type="password"
               placeholder="Type here"
-              className="custom-placeholder input input-bordered w-full max-w-xs"
-              value={input.password}
-              onChange={(e) => setInput({ ...input, password: e.target.value })}
-              style={{
-                backgroundColor: "rgb(255,255,255,0.2)",
-                color: "black",
-              }}
+              className="input input-bordered w-full max-w-xs"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
-            <div style={{
-                color: "white",
-                margin: "10px",
-                marginTop: "20px",
-                textDecoration: "underline",
-                fontSize: "20px",
-              }}>
-                <Link to="/signUp">Create account </Link>
-            </div>
+            <br />
+            <Link to="/signUp" className="link link-primary">
+              Create account
+            </Link>
             <div>
-              <button className="btn btn-block btn-sm mt-2" style={{
-                  height: "40px",
-                }}>Login</button>
+              <button className="btn btn-block btn-sm mt-2" disabled={loading}>
+                {loading ? (
+                  <span className="loading loading-spinner loading-md"></span>
+                ) : (
+                  "Login"
+                )}
+              </button>
             </div>
           </form>
+        </div>
+        <input
+          type="text"
+          placeholder="Type here"
+          className="custom-placeholder input input-bordered w-full max-w-xs"
+          value={input.password}
+          onChange={(e) => setInput({ ...input, password: e.target.value })}
+          style={{
+            backgroundColor: "rgb(255,255,255,0.2)",
+            color: "black",
+          }}
+        />
+        <div
+          style={{
+            color: "white",
+            margin: "10px",
+            marginTop: "20px",
+            textDecoration: "underline",
+            fontSize: "20px",
+          }}
+        >
+          <Link to="/signUp">Create account </Link>
+        </div>
+        <div>
+          <button
+            className="btn btn-block btn-sm mt-2"
+            style={{
+              height: "40px",
+            }}
+          >
+            Login
+          </button>
         </div>
       </div>
     </>
