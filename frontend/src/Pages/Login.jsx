@@ -68,7 +68,7 @@ const Login = () => {
                 fontSize: "20px",
               }}
             >
-              <Link to="/signUp">Create account </Link>
+              <Link to="/signup">Create account </Link>
             </div>
             <div>
               <button
@@ -76,8 +76,9 @@ const Login = () => {
                 style={{
                   height: "40px",
                 }}
+                disabled={loading}
               >
-                Login
+                {loading ? <span className="loading loading-spinner loading-md"></span> : "Login"}
               </button>
             </div>
           </form>

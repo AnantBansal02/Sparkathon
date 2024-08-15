@@ -113,8 +113,9 @@ const Signup = () => {
                 style={{
                   height: "40px",
                 }}
+                disabled={loading}
               >
-                SignUp
+                {loading ? <span className="loading loading-spinner loading-md"></span> : "SignUp"}
               </button>
             </div>
           </form>
